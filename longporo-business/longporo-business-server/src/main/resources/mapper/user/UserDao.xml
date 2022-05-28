@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.longporo.dev.modules.user.dao.UserDao">
+    <resultMap id="BaseResultMap" type="com.longporo.dev.modules.user.entity.UserEntity">
+               <!---->
+        <id column="user_id" jdbcType="BIGINT" property="id"/>
+            <!---->
+        <result column="user_username" jdbcType="VARCHAR" property="username"/>
+            <!---->
+        <result column="user_password" jdbcType="VARCHAR" property="password"/>
+            <!---->
+        <result column="user_email" jdbcType="VARCHAR" property="email"/>
+            <!---->
+        <result column="user_phonenum" jdbcType="VARCHAR" property="phonenum"/>
+            <!---->
+        <result column="user_status" jdbcType="SMALLINT" property="status"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+         user.id as user_id <!---->
+        ,user.username as user_username <!---->
+        ,user.password as user_password <!---->
+        ,user.email as user_email <!---->
+        ,user.phonenum as user_phonenum <!---->
+        ,user.status as user_status <!---->
+    </sql>
+    <sql id="Where_Sql">
+        <if test="user.id != null">
+            and user.id = #{user.id,jdbcType=BIGINT}
+        </if>
+    <if test="user.idNoNull != null and user.idNoNull == 1">
+        and user.id  is null
+    </if>
+    <if test="user.idNoNull != null and user.idNoNull == 0">
+        and user.id  is  not null
+    </if>
+        <if test="user.idList != null and user.idList.size()!=0">
+            and user.id in
+            <foreach collection="user.idList" item="listItem" open="(" close=")" separator=",">
+                #{listItem}
+            </foreach>
+        </if>
+        <if test="user.idNoInList != null and user.idNoInList.size()!=0">
+            and user.id not in
+            <foreach collection="user.idNoInList" item="listItem" open="(" close=")" separator=",">
+                #{listItem}
+            </foreach>
+        </if>
+        <if test="user.idLt != null">
+            and user.id &lt; #{user.idLt,jdbcType=BIGINT}
+        </if>
+        <if test="user.idLtEq != null">
+            and user.id &lt;= #{user.idLtEq,jdbcType=BIGINT}
+        </if>
+        <if test="user.idGt != null">
+            and user.id &gt; #{user.idGt,jdbcType=BIGINT}
+        </if>
+        <if test="user.idGtEq != null">
+            and user.id &gt;= #{user.idGtEq,jdbcType=BIGINT}
+        </if>
+            <if test="user.username != null and user.username != ''">
+            and user.username = #{user.username,jdbcType=VARCHAR}
+        </if>
+    <if test="user.usernameNoNull != null and user.usernameNoNull == 1">
+        and user.username  is null
+    </if>
+    <if test="user.usernameNoNull != null and user.usernameNoNull == 0">
+        and user.username  is  not null
+    </if>
+        <if test="user.usernameList != null and user.usernameList.size()!=0">
+            and user.username in
+            <foreach collection="user.usernameList" item="listItem" open="(" close=")" separator=",">
+                #{listItem}
+            </foreach>
+        </if>
+        <if test="user.usernameNoInList != null and user.usernameNoInList.size()!=0">
+            and user.username not in
+            <foreach collection="user.usernameNoInList" item="listItem" open="(" close=")" separator=",">
+                #{listItem}
+            </foreach>
+        </if>
+        <if test="user.usernameAllLike != null  and user.usernameAllLike != ''">
+            and user.username like concat(concat('%',#{user.usernameAllLike,jdbcType=VARCHAR}),'%')
+        </if>
+        <if test="user.usernameLeftLike != null  and user.usernameLeftLike != ''">
+            and user.username like concat('%',#{user.usernameLeftLike,jdbcType=VARCHAR})
+        </if>
+        <if test="user.usernameRightLike != null  and user.usernameRightLike != ''">
+            and user.username like concat(#{user.usernameRightLike,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="user.password != null and user.password != ''">
+            and user.password = #{user.password,jdbcType=VARCHAR}
+        </if>
+    <if test="user.passwordNoNull != null and user.passwordNoNull == 1">
+        and user.password  is null
+    </if>
+    <if test="user.passwordNoNull != null and user.passwordNoNull == 0">
+        and user.password  is  not null
+    </if>
+        <if test="user.passwordList != null and user.passwordList.size()!=0">
+            and user.password in
+            <foreach collection="user.passwordList" item="listItem" open="(" close=")" separator=",">
+                #{listItem}
+            </foreach>
+        </if>
+        <if test="user.passwordNoInList != null and user.passwordNoInList.size()!=0">
+            and user.password not in
+            <foreach collection="user.passwordNoInList" item="listItem" open="(" close=")" separator=",">
+                #{listItem}
+            </foreach>
+        </if>
+        <if test="user.passwordAllLike != null  and user.passwordAllLike != ''">
+            and user.password like concat(concat('%',#{user.passwordAllLike,jdbcType=VARCHAR}),'%')
+        </if>
+        <if test="user.passwordLeftLike != null  and user.passwordLeftLike != ''">
+            and user.password like concat('%',#{user.passwordLeftLike,jdbcType=VARCHAR})
+        </if>
+        <if test="user.passwordRightLike != null  and user.passwordRightLike != ''">
+            and user.password like concat(#{user.passwordRightLike,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="user.email != null and user.email != ''">
+            and user.email = #{user.email,jdbcType=VARCHAR}
+        </if>
+    <if test="user.emailNoNull != null and user.emailNoNull == 1">
+        and user.email  is null
+    </if>
+    <if test="user.emailNoNull != null and user.emailNoNull == 0">
+        and user.email  is  not null
+    </if>
+        <if test="user.emailList != null and user.emailList.size()!=0">
+            and user.email in
+            <foreach collection="user.emailList" item="listItem" open="(" close=")" separator=",">
+                #{listItem}
+            </foreach>
+        </if>
+        <if test="user.emailNoInList != null and user.emailNoInList.size()!=0">
+            and user.email not in
+            <foreach collection="user.emailNoInList" item="listItem" open="(" close=")" separator=",">
+                #{listItem}
+            </foreach>
+        </if>
+        <if test="user.emailAllLike != null  and user.emailAllLike != ''">
+            and user.email like concat(concat('%',#{user.emailAllLike,jdbcType=VARCHAR}),'%')
+        </if>
+        <if test="user.emailLeftLike != null  and user.emailLeftLike != ''">
+            and user.email like concat('%',#{user.emailLeftLike,jdbcType=VARCHAR})
+        </if>
+        <if test="user.emailRightLike != null  and user.emailRightLike != ''">
+            and user.email like concat(#{user.emailRightLike,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="user.phonenum != null and user.phonenum != ''">
+            and user.phonenum = #{user.phonenum,jdbcType=VARCHAR}
+        </if>
+    <if test="user.phonenumNoNull != null and user.phonenumNoNull == 1">
+        and user.phonenum  is null
+    </if>
+    <if test="user.phonenumNoNull != null and user.phonenumNoNull == 0">
+        and user.phonenum  is  not null
+    </if>
+        <if test="user.phonenumList != null and user.phonenumList.size()!=0">
+            and user.phonenum in
+            <foreach collection="user.phonenumList" item="listItem" open="(" close=")" separator=",">
+                #{listItem}
+            </foreach>
+        </if>
+        <if test="user.phonenumNoInList != null and user.phonenumNoInList.size()!=0">
+            and user.phonenum not in
+            <foreach collection="user.phonenumNoInList" item="listItem" open="(" close=")" separator=",">
+                #{listItem}
+            </foreach>
+        </if>
+        <if test="user.phonenumAllLike != null  and user.phonenumAllLike != ''">
+            and user.phonenum like concat(concat('%',#{user.phonenumAllLike,jdbcType=VARCHAR}),'%')
+        </if>
+        <if test="user.phonenumLeftLike != null  and user.phonenumLeftLike != ''">
+            and user.phonenum like concat('%',#{user.phonenumLeftLike,jdbcType=VARCHAR})
+        </if>
+        <if test="user.phonenumRightLike != null  and user.phonenumRightLike != ''">
+            and user.phonenum like concat(#{user.phonenumRightLike,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="user.status != null">
+            and user.status = #{user.status,jdbcType=SMALLINT}
+        </if>
+    <if test="user.statusNoNull != null and user.statusNoNull == 1">
+        and user.status  is null
+    </if>
+    <if test="user.statusNoNull != null and user.statusNoNull == 0">
+        and user.status  is  not null
+    </if>
+        <if test="user.statusList != null and user.statusList.size()!=0">
+            and user.status in
+            <foreach collection="user.statusList" item="listItem" open="(" close=")" separator=",">
+                #{listItem}
+            </foreach>
+        </if>
+        <if test="user.statusNoInList != null and user.statusNoInList.size()!=0">
+            and user.status not in
+            <foreach collection="user.statusNoInList" item="listItem" open="(" close=")" separator=",">
+                #{listItem}
+            </foreach>
+        </if>
+        <if test="user.statusLt != null">
+            and user.status &lt; #{user.statusLt,jdbcType=SMALLINT}
+        </if>
+        <if test="user.statusLtEq != null">
+            and user.status &lt;= #{user.statusLtEq,jdbcType=SMALLINT}
+        </if>
+        <if test="user.statusGt != null">
+            and user.status &gt; #{user.statusGt,jdbcType=SMALLINT}
+        </if>
+        <if test="user.statusGtEq != null">
+            and user.status &gt;= #{user.statusGtEq,jdbcType=SMALLINT}
+        </if>
+        </sql>
+    <select id="pageList" resultMap="BaseResultMap"
+            parameterType="com.longporo.dev.modules.user.dto.UserQueryDTO">
+        select
+        <include refid="Base_Column_List"/>
+        from user user
+        <where>
+            <include refid="Where_Sql"/>
+        </where>
+        <if test="sortStr != null and sortStr != ''">
+            ORDER BY ${sortStr}
+        </if>
+    </select>
+</mapper>

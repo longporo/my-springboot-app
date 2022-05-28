@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<included>
+    <springProperty scope="context" name="logPath" source="log.path"/>
+
+    <appender name="logUtilAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logPath}/trace/trace.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logPath}/trace/trace.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <maxHistory>360</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>utf-8</charset>
+            <Pattern>%msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="asyncFile" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>512</queueSize>
+        <appender-ref ref="logUtilAppender"/>
+    </appender>
+
+    <logger name="com.longporo.dev.common.log.LogService" level="INFO" additivity="false">
+        <appender-ref ref="logUtilAppender"/>
+    </logger>
+
+</included>
+
+ 
+
+ 

@@ -1,0 +1,81 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  servlet:
+    context-path: /
+    session:
+      cookie:
+        http-only: true
+
+spring:
+  mvc:
+    static-path-pattern: /**
+  profiles: prod
+  messages:
+    encoding: UTF-8
+    basename: i18n/messages
+  datasource:
+    druid:
+      #      MySQL
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/ssm?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+      username: root
+      password: root
+      #      Oracle
+      #      driverClassName: oracle.jdbc.OracleDriver
+      #      url: jdbc:oracle:thin:@127.0.0.1:1521:TEST
+      #      username: root
+      #      password: root
+      #      validation-query: SELECT 1 FROM DUAL
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 6000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        #login-username: admin
+        #login-password: admin
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true
+  resources:
+    static-locations: classpath:/static/
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  # entity package，use , or ; for multiple packages
+  typeAliasesPackage: com.longporo.dev.modules.*.entity
+  global-config:
+    # database config
+    db-config:
+      # id type  AUTO:"ID automatically increase", INPUT:"User input ID", ID_WORKER:"Number unique ID", UUID:"Unique ID UUID";
+      id-type: UUID
+      # field update strategy. IGNORED:"update fields no mater fields are null or empty", NOT_NULL:"update not null fields, if null, ignore"), NOT_EMPTY:"update not null or empty fields, if null or '', ignore"
+      field-strategy: NOT_NULL
+      # underline to camel
+      #      column-underline: true
+      db-type: mysql
+    banner: false
+  # native config
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

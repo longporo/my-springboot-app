@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.6.RELEASE</version>
+        <relativePath/>
+    </parent>
+    <groupId>com.longporo.dev</groupId>
+    <artifactId>longporo-dev</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+    <name>longporo-dev</name>
+    <description>My Springboot Project</description>
+
+    <modules>
+        <module>longporo-common</module>
+        <module>longporo-business</module>
+    </modules>
+
+    <properties>
+        <revision>0.0.1-SNAPSHOT</revision>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
+        <spring-boot-maven-plugin.version>2.2.5.RELEASE</spring-boot-maven-plugin.version>
+        <commons.lang.version>3.7</commons.lang.version>
+        <commons.io.version>2.6</commons.io.version>
+        <jsoup.version>1.11.3</jsoup.version>
+        <druid.version>1.1.10</druid.version>
+        <guava.version>28.2-jre</guava.version>
+        <hutool.version>5.2.5</hutool.version>
+        <spring-boot-admin.version>2.2.2</spring-boot-admin.version>
+        <mybatisplus.version>3.0.6</mybatisplus.version>
+        <joda.time.version>2.9.9</joda.time.version>
+        <jar.package.dir>/Users/aihuishou/Desktop/updateProjectSchedule</jar.package.dir>
+    </properties>
+
+
+    <dependencies>
+        <!-- common libraries -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda.time.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+    </dependencies>
+
+    <!-- Maven控制Spring Profile -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profileActive>dev</profileActive>
+                <spring.profiles.active>dev</spring.profiles.active>
+                <logDir>/Users/aihuishou/Desktop/mySpringbootAppLogs/</logDir>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profileActive>prod</profileActive>
+                <logDir>F:\webserver_kingbo_muck\logs\</logDir>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin-version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <fork>true</fork>
+                    <meminitial>512m</meminitial>
+                    <maxmem>1024m</maxmem>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

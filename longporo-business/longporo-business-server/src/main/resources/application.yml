@@ -1,0 +1,11 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: my springboot app
+  profiles:
+    active: @profileActive@
+# config log saving folder
+log:
+  path: @logDir@business
+
