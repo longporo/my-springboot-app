@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
-     * code: 0 represents success, others are fail
+     * code: 0 stands for success, others for failure
      */
     private int code = 0;
     /**

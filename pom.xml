@@ -84,7 +84,7 @@
         </dependency>
     </dependencies>
 
-    <!-- Maven控制Spring Profile -->
+    <!-- Maven configuration with Spring Profile -->
     <profiles>
         <profile>
             <id>dev</id>
@@ -101,7 +101,7 @@
             <id>prod</id>
             <properties>
                 <profileActive>prod</profileActive>
-                <logDir>F:\webserver_kingbo_muck\logs\</logDir>
+                <logDir>F:\webserver_prod\logs\</logDir>
             </properties>
         </profile>
     </profiles>

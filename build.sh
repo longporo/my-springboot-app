@@ -1,4 +1,4 @@
-#! default profile is dev，for another like prod, just type behind the command：sh build.sh prod
+#! The default profile is dev，for another like prod, just type behind the command：sh build.sh prod
 
 profileActive=test
 if [ -n "$1" ]; then
