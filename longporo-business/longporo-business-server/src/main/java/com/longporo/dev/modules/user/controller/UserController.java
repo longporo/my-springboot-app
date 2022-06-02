@@ -38,9 +38,16 @@ public class UserController {
     @GetMapping
     @ResponseBody
     public Result read(@RequestBody UserQueryDTO userQueryDTO) {
-        return new Result().ok(userService.pageList(userQueryDTO));
+        return new Result<>().ok(userService.pageList(userQueryDTO));
     }
 
+    /**
+     * Update a user<br>
+     *
+     * @param [dto]
+     * @return com.longporo.dev.common.utils.Result
+     * @author Zihao Long
+     */
     @PutMapping
     @ResponseBody
     public Result update(@RequestBody UserDTO dto) {
@@ -48,6 +55,13 @@ public class UserController {
         return new Result().ok();
     }
 
+    /**
+     * Delete a user<br>
+     *
+     * @param [id]
+     * @return com.longporo.dev.common.utils.Result
+     * @author Zihao Long
+     */
     @DeleteMapping
     @ResponseBody
     public Result delete(Long id) {
@@ -55,6 +69,13 @@ public class UserController {
         return new Result().ok();
     }
 
+    /**
+     * Delete users by email<br>
+     *
+     * @param [email]
+     * @return com.longporo.dev.common.utils.Result
+     * @author Zihao Long
+     */
     @DeleteMapping("/delByEmail")
     @ResponseBody
     public Result delByEmail(String email) {
